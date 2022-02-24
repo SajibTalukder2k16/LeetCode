@@ -14,8 +14,8 @@ public:
         if(head==NULL)
             return head;
 
-        ListNode* ret=new ListNode();
-        ret->val=head->val;
+        ListNode* ret=head;//new ListNode();
+       // ret->val=head->val;
         ListNode* res=ret;
         ListNode* prev=new ListNode();
         head=head->next;
