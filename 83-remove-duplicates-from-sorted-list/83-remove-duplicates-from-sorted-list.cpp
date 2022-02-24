@@ -11,30 +11,6 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        if(head==NULL||head->next==NULL)
-            return head;
-
-        ListNode* ret=head;
-        ListNode* res=ret;
-        while(head!=NULL)
-        {
-            if(head->val!=ret->val){
-                ret->next=head;
-                ret=ret->next;
-            }
-            head=head->next;
-        }
-        ret->next=NULL;
-        return res;
-    }
-};
-///Previous Solution
-/*
-
-class Solution {
-///Better 7 ms
-public:
-    ListNode* deleteDuplicates(ListNode* head) {
         if(head==NULL)
             return head;
 
@@ -53,6 +29,8 @@ public:
     }
 };
 
+///Previous Solution
+/*
 
 class Solution {
 public:
