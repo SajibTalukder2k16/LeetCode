@@ -11,6 +11,36 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
+        if(head==NULL || head->next==NULL)
+            return head;
+
+        ListNode* ret= new ListNode();
+        ret->val=head->val;
+        ListNode* res=ret;
+        while(head!=NULL)
+        {
+            if(head->val!=ret->val){
+                ListNode *temp = new ListNode();
+                temp->val=head->val;
+                ret->next=temp;
+                ret=ret->next;
+            }
+            ListNode *temp=head;
+            head=head->next;
+            delete temp;
+        }
+        ret->next=NULL;
+        return res;
+    }
+};
+
+///Previous Solution
+/*
+
+class Solution {
+///Better 7 ms
+public:
+    ListNode* deleteDuplicates(ListNode* head) {
         if(head==NULL)
             return head;
 
@@ -29,8 +59,6 @@ public:
     }
 };
 
-///Previous Solution
-/*
 
 class Solution {
 public:
