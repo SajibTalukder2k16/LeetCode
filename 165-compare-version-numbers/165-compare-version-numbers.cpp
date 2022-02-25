@@ -1,52 +1,5 @@
 class Solution {
 public:
-    string removeZeros(string str){
-        int len=str.length();
-        bool found = false;
-        string out="";
-        int sz=0;
-        for(int i=0;i<len;i++)
-        {
-            //cout<<str[i]<<" "<<out<<endl;
-            //cout<<found<<endl;
-            if(str[i]=='.')
-            {
-                found=false;
-                if(out!="" && out[sz-1]=='.')
-                {
-                    continue;
-                }
-                    
-                
-                out+=str[i];
-                sz++;
-                continue;
-            }
-            if(str[i]=='0' && found==false)
-            {
-                //cout<<"Insize"
-                continue;
-            }
-            if(str[i]=='0' && found==true)
-            {
-                //cout<<"Insize"
-                out+=str[i];
-                continue;
-            }
-            if(str[i]!='0')
-            {
-                found=true;
-                out+=str[i];
-                sz++;
-            }
-        }
-        //cout<<out<<endl<<endl<<endl;
-        if(out!="")
-            if(out[sz-1]=='.')
-                out.pop_back();
-            //out[sz-1]='\0'
-        return out;
-    }
     vector<int> splitting(string str,int len)
     {
         vector<int>vec;
@@ -88,15 +41,6 @@ public:
         vec2=splitting(ver2,len2);
         len1=vec1.size();
         len2=vec2.size();
-        /*
-        for(int i=0;i<len1;i++)
-            cout<<vec1[i]<<" ";
-        cout<<endl;
-        for(int i=0;i<len2;i++)
-            cout<<vec2[i]<<" ";
-        cout<<endl;
-        */
-        
         int len=min(len1,len2);
         for(int i=0;i<len;i++)
         {
