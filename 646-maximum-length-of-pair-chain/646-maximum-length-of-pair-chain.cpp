@@ -19,9 +19,11 @@ public:
         return dp[i]=ans+1;
     }
     int findLongestChain(vector<vector<int>>& pairs) {
-        memset(dp,-1,sizeof dp);
+        //memset(dp,-1,sizeof dp);
         int ans=1;
         int sz=pairs.size();
+        for(int i=0;i<sz;i++)
+            dp[i]=-1;
         sort(pairs.begin(),pairs.end());
         for(int i=0;i<sz;i++)
         {
