@@ -4,8 +4,6 @@ public:
     int dp[mx];
     
     int foo(int i,vector<int>& nums,int sz){
-        if(i==sz-1)
-            return 1;
         if(dp[i]!=-1)
             return dp[i];
         int ans=0;
