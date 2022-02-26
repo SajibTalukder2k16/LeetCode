@@ -4,13 +4,18 @@ public:
     int dp[mx];
     
     int foo(int i,vector<int>& nums,int sz){
+        if(i==sz-1)
+            return 1;
         if(dp[i]!=-1)
             return dp[i];
         int ans=0;
         for(int j=i+1;j<sz;j++)
         {
             if(nums[j]>nums[i]){
-                ans=max(ans,foo(j,nums,sz));
+                if(dp[j]!=-1)
+                    ans=max(ans,dp[j]);
+                else
+                    ans=max(ans,foo(j,nums,sz));
             }
         }
         return dp[i]=ans+1;
