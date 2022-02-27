@@ -13,25 +13,22 @@ public:
         }
         if(mnIndex==-1)
         {
+            int temp;
             int half=sz/2;
             for(int i=0;i<half;i++){
-                swap(nums[i],nums[sz-1]);
+                temp=nums[i];
+                nums[i]=nums[sz-1];
+                nums[sz-1]=temp;
                 sz--;
             }
-            return nums;
-                
-                
+            return nums; 
         }
-        //cout<<"Hello"<<endl;
+
         vector<int>vec(sz);
         int idx=0;
-        //int val=nums[mnIndex];
-        //vec[idx++]=val;
-        //cout<<"Hello"<<endl;
         int i,j;
         i=mnIndex;
         j=mnIndex-1;
-        //cout<<"Hello"<<endl;
         for(;i<sz && j>=0;){
             if(nums[i]<=nums[j])
             {
@@ -52,9 +49,6 @@ public:
             for(;j>=0;j--)
                 vec[idx++]=nums[j];
         }
-        //nums=vec;
-            
-        //sort(nums.begin(),nums.end());
         return vec;
         
     }
