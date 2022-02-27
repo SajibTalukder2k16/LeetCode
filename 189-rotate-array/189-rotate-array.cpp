@@ -1,8 +1,8 @@
 class Solution {
-    void foo(int index,int k,int sz,vector<int> & nums){
-        int temp=nums[index];
-        int idx=index;
-        int val;
+    int temp,idx,index,sz,val;
+    void foo(int k,vector<int> & nums){
+        temp=nums[index];
+        idx=index;
         index+=k;
         while(index!=idx){
             val=nums[index];
@@ -21,13 +21,16 @@ public:
     void rotate(vector<int>& nums, int k) {
         if(k==0)
             return;
-        int sz=nums.size();
+        sz=nums.size();
         k=k%sz;
         if(k==0)
             return ;
         int gcd = __gcd(k,sz);
-        for(int i=0;i<gcd;i++)
-            foo(i,k,sz,nums);
+        for(int i=0;i<gcd;i++){
+            index=i;
+            foo(k,nums);
+        }
+            
 
             
     }
