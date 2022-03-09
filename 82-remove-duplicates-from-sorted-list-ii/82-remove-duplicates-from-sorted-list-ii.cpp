@@ -11,13 +11,13 @@
 class Solution {
 public:
     ListNode* deleteDuplicates(ListNode* head) {
-        if(head==NULL || head->next==NULL)
+        if(head==NULL)
             return head;
 
-        ListNode* ret=head;
+        ListNode* ret=new ListNode();
+        ret->val=head->val;
         ListNode* res=ret;
         ListNode* prev=new ListNode();
-        prev->next=res;
         head=head->next;
         while(head!=NULL)
         {
@@ -37,23 +37,24 @@ public:
                 ListNode* temp=head;
                 while(head->val==ret->val)
                 {
-                    temp=head,head=head->next;   
+                    //cout<<head->val<<endl;
+                    temp=head,head=head->next;
+                    
                     if(head==NULL)
                         break;
                 }
                     
                 ret->val=-200;
+                //cout<<"Ret: "<<ret->val<<endl;
                 head=temp;
             }
             head=head->next;
         }
+        //cout<<ret->val<<endl;
+        if(ret==res && ret->val==-200)
+            res=NULL;
         if(ret->val==-200)
-        {
-            if(res==prev->next)
-                res=NULL;
-            prev->next=NULL;
-        }
-            
+            ret=NULL,prev->next=NULL;
         else
             ret->next=NULL;
         return res;
