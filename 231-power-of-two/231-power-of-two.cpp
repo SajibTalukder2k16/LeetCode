@@ -5,8 +5,11 @@ public:
             if(n%2==0){
                 n/=2;
             }
-            else
-                break;
+            else{
+                if(n==1)
+                    return true;
+                return false;
+            }
         }
         if(n==1)
             return true;
