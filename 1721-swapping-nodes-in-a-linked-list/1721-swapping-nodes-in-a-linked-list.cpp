@@ -20,8 +20,6 @@ public:
             cnt++;
         }
         current=head;
-        if(k!=cnt)
-            k=k%cnt;
         for(int index=1;index<=k;index++){
             if(index==k){
                 int val=current->val;
