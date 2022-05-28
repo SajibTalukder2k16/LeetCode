@@ -6,9 +6,8 @@ public:
         int sz=nums.size();
         for(int i=0;i<sz;i++){
             sum+=nums[i];
-            totalSum+=i;
+            totalSum+=i+1;
         }
-        totalSum+=sz;
         return totalSum-sum;
         
     }
