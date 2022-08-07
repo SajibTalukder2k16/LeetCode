@@ -1,17 +1,16 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        map<char,int>magazineCharCount;
-        map<char,int>ransomNoteCharCount;
-        
+        int ransomNoteCharCount[26]={0};
+        int magazineCharCount[26]={0};
         int len = magazine.length();
         for(int i=0;i<len;i++){
-            magazineCharCount[magazine[i]]++;
+            magazineCharCount[magazine[i]-'a']++;
         }
         len =ransomNote.length();
         for(int i=0;i<len;i++){
-            ransomNoteCharCount[ransomNote[i]]++;
-            if(ransomNoteCharCount[ransomNote[i]]>magazineCharCount[ransomNote[i]])
+            ransomNoteCharCount[ransomNote[i]-'a']++;
+            if(ransomNoteCharCount[ransomNote[i]-'a']>magazineCharCount[ransomNote[i]-'a'])
                 return false;
         }
         return true;
