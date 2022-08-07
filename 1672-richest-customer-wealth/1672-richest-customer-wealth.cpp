@@ -9,8 +9,7 @@ public:
             for(int j=0;j<noOfbanks;j++){
                 sum+=accounts[i][j];
             }
-            if(sum>maxWealth)
-                maxWealth=sum;
+            maxWealth=max(maxWealth,sum);
             sum=0;
         }
         return maxWealth;
