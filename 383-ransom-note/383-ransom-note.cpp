@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool canConstruct(string ransomNote, string magazine) {
-        int ransomNoteCharCount[26]={0};
-        int magazineCharCount[26]={0};
+        int ransomNoteCharCount[26]={};
+        int magazineCharCount[26]={};
         int len = magazine.length();
         for(int i=0;i<len;i++){
             magazineCharCount[magazine[i]-'a']++;
