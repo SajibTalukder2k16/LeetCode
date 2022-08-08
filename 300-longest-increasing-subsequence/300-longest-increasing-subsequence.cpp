@@ -8,13 +8,8 @@ public:
         for(int j=i+1;j<sz;j++)
         {
             if(nums[i]<nums[j]){
-                if(dp[j]!=0 && dp[j]>ans){
+                if(LIS(j,sz,nums)>ans)
                     ans=dp[j];
-                }
-                else{
-                    if(LIS(j,sz,nums)>ans)
-                        ans=dp[j];
-                }
             }
         }
         return dp[i]=ans+1;
