@@ -8,9 +8,7 @@ public:
         for(int j=i+1;j<sz;j++)
         {
             if(nums[i]<nums[j]){
-                int val=LIS(j,sz,nums);
-                if(val>ans)
-                    ans=val;
+                ans = max(ans,LIS(j,sz,nums));
             }
         }
         return dp[i]=ans+1;
