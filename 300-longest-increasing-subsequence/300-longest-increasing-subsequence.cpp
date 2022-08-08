@@ -1,32 +1,24 @@
-#define mx 2501
 class Solution {
 public:
-    int dp[mx];
-    
-    int foo(int i,vector<int>& nums,int sz){
-        if(dp[i]!=-1)
+    int dp[2501]={0};
+    int LIS(int i,int sz,vector<int>&nums){
+        if(dp[i]!=0)
             return dp[i];
-        int ans=0;
+        int ans = 0;
         for(int j=i+1;j<sz;j++)
         {
-            if(nums[j]>nums[i]){
-                if(dp[j]!=-1)
-                    ans=max(ans,dp[j]);
-                else
-                    ans=max(ans,foo(j,nums,sz));
+            if(nums[i]<nums[j]){
+                ans=max(ans,LIS(j,sz,nums));
             }
         }
         return dp[i]=ans+1;
     }
-    
     int lengthOfLIS(vector<int>& nums) {
-        memset(dp,-1,sizeof dp);
-        int ans=1;
-        int sz=nums.size();
-        for(int i=0;i<sz;i++)
-        {
-            ans=max(ans,foo(i,nums,sz));
+        int sz = nums.size();
+        int mx=1;
+        for(int i=0;i<sz;i++){
+            mx=max(mx,LIS(i,sz,nums));
         }
-        return ans;
+        return mx;
     }
 };
