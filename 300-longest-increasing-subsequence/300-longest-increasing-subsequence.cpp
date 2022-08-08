@@ -8,8 +8,9 @@ public:
         for(int j=i+1;j<sz;j++)
         {
             if(nums[i]<nums[j]){
-                if(LIS(j,sz,nums)>ans)
-                    ans=dp[j];
+                int val=LIS(j,sz,nums);
+                if(val>ans)
+                    ans=val;
             }
         }
         return dp[i]=ans+1;
