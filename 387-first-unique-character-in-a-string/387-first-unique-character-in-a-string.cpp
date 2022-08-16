@@ -11,7 +11,8 @@ public:
         int output = len;
         for(int i=0;i<26;i++){
             if(ara[i]==1){
-                output = min(pos[i],output);
+                if(pos[i]<output)
+                    output=pos[i];
             }
         }
         if(output==len)
