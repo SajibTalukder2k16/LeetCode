@@ -8,7 +8,8 @@ public:
         for(int i=0;i<len;i++){
             ara[s[i]-'a']++;
             pos[s[i]-'a']=i;
-            vec.push_back(s[i]);
+            if(ara[s[i]-'a']==1)
+                vec.push_back(s[i]);
         }
         int sz=vec.size();
         for(int i=0;i<sz;i++){
