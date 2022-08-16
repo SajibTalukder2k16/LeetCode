@@ -4,19 +4,20 @@ public:
         int ara[26]={0};
         int pos[26]={-1};
         int len = s.length();
-        vector<char>vec;
         for(int i=0;i<len;i++){
             ara[s[i]-'a']++;
             pos[s[i]-'a']=i;
-            if(ara[s[i]-'a']==1)
-                vec.push_back(s[i]);
         }
-        int sz=vec.size();
-        for(int i=0;i<sz;i++){
-            if(ara[vec[i]-'a']==1)
-                return pos[vec[i]-'a'];
+        int output = len;
+        for(int i=0;i<26;i++){
+            if(ara[i]==1){
+                output = min(pos[i],output);
+            }
         }
-        return -1;
+        if(output==len)
+            return -1;
+        else
+            return output;
         
         
     }
