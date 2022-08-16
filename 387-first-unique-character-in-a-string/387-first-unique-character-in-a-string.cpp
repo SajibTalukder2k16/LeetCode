@@ -14,6 +14,11 @@ public:
                 output = min(pos[i],output);
             }
         }
-        return output==len? -1:output;
+        if(output==len)
+            return -1;
+        else
+            return output;
+        
+        
     }
 };
