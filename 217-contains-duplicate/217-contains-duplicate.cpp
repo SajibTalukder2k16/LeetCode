@@ -4,7 +4,7 @@ public:
         
         ///Sajib Talukder
         
-        int szOfSet = unordered_set<int>(nums.begin(),nums.end()).size();
+        int szOfSet = set<int>(nums.begin(),nums.end()).size();
         return nums.size()>szOfSet;
         
     }
