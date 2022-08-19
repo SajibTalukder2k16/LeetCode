@@ -1,11 +1,11 @@
 class Solution {
 public:
     bool containsDuplicate(vector<int>& nums) {
-        int sz=nums.size();
-        unordered_set<int>setOfNums(nums.begin(),nums.end());;
-        if(sz!=setOfNums.size())
-            return true;
-        return false;
+        
+        ///Sajib Talukder
+        
+        int szOfSet = unordered_set<int>(nums.begin(),nums.end()).size();
+        return nums.size()>szOfSet;
         
     }
 };
