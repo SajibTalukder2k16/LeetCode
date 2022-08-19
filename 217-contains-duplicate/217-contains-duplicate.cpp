@@ -4,8 +4,7 @@ public:
         
         ///Sajib Talukder
         
-        int szOfSet = set<int>(nums.begin(),nums.end()).size();
-        return nums.size()>szOfSet;
+        return nums.size() > set<int>(nums.begin(),nums.end()).size();
         
     }
 };
