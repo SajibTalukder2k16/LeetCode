@@ -11,7 +11,9 @@ public:
             charCountOfT[t[i]-'a']++;
         for(int i=0;i<lenS;i++){
             charCountOfS[s[i]-'a']++;
-            if(charCountOfS[s[i]-'a']>charCountOfT[s[i]-'a'])
+        }
+        for(int i=0;i<26;i++){
+            if(charCountOfS[i]!=charCountOfT[i])
                 return false;
         } 
         return true;
