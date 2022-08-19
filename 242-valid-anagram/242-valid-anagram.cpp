@@ -11,13 +11,9 @@ public:
             charCountOfT[t[i]-'a']++;
         for(int i=0;i<lenS;i++){
             charCountOfS[s[i]-'a']++;
-        }
-        for(int i=0;i<26;i++){
-            // cout<<charCountOfS[i]<<" "<<charCountOfT[i]<<endl;
-            if(charCountOfS[i]!=charCountOfT[i])
+            if(charCountOfS[s[i]-'a']>charCountOfT[s[i]-'a'])
                 return false;
-        }
-            
+        } 
         return true;
     }
 };
