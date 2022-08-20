@@ -17,22 +17,19 @@ public:
             }
             return nums;
         }
-        else if(cntOfZero==1){
+        else{
            for(int i=0;i<len;i++){
-                if(nums[i]!=0)
+                if(nums[i]!=0 && cntOfZero)
                     nums[i]=0;
+                else if(nums[i]!=0)
+                    nums[i]=totalProduct/nums[i];
                 else{
                     nums[i]=totalProduct;
                 }
             } 
             return nums;
         }
-        else{
-            for(int i=0;i<len;i++){
-                    nums[i]=totalProduct/nums[i];
-            }
-            return nums;
-        }
+
             
         
     }
