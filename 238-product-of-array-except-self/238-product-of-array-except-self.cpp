@@ -15,6 +15,7 @@ public:
             for(int i=0;i<len;i++){
                 nums[i]=0;
             }
+            return nums;
         }
         else if(cntOfZero==1){
            for(int i=0;i<len;i++){
@@ -24,12 +25,15 @@ public:
                     nums[i]=totalProduct;
                 }
             } 
+            return nums;
         }
-        else
+        else{
             for(int i=0;i<len;i++){
                     nums[i]=totalProduct/nums[i];
             }
-        return nums;
+            return nums;
+        }
+            
         
     }
 };
