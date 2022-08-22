@@ -3,14 +3,12 @@ public:
     int currentChar=-1;
     bool rowChecker(vector<vector<char>>& board){
         for(int i=0;i<9;i++){
-            int mp[10]={0};
+            int mp[9]={0};
             for(int j=0;j<9;j++){
-                currentChar=board[i][j]-'0';
-                // currentChar--;
-                if(currentChar>=0 && currentChar<=9){
+                currentChar=board[i][j]-'1';
+                if(currentChar>=0 && currentChar<=8){
                      mp[currentChar]++;
                     if(mp[currentChar]==2){
-                        // cout<<i<<" "<<j<<endl;
                         return false;
                     }
                 }
@@ -20,14 +18,12 @@ public:
     }
      bool colChecker(vector<vector<char>>& board){
         for(int j=0;j<9;j++){
-            int mp[10]={0};
+            int mp[9]={0};
             for(int i=0;i<9;i++){
-                currentChar=board[i][j]-'0';
-                // currentChar--;
-                if(currentChar>=0 && currentChar<=9){
+                currentChar=board[i][j]-'1';
+                if(currentChar>=0 && currentChar<=8){
                      mp[currentChar]++;
                     if(mp[currentChar]==2){
-                        // cout<<i<<" "<<j<<endl;
                         return false;
                     }
                 }
@@ -46,22 +42,17 @@ public:
         return true;
     }
     bool subBoxes(vector<vector<char>>& board,int rPos,int cPos){
-        int mp[10]={0};
+        int mp[9]={0};
         for(int i=rPos;i<rPos+3;i++){
             for(int j=cPos;j<cPos+3;j++){
-                currentChar=board[i][j]-'0';
-                // currentChar--;
-                if(currentChar>=0 && currentChar<=9){
+                currentChar=board[i][j]-'1';
+                if(currentChar>=0 && currentChar<=8){
                     mp[currentChar]++;
                     if(mp[currentChar]==2){
-                        // cout<<i<<" "<<j<<endl;
                         return false;
                     }
                 }
             }
-            // if(rPos==0 && cPos==6){
-                // cout<<mp[1]<<endl;
-            // }
         }
         return true;
     }
