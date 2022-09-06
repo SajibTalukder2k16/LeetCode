@@ -3,8 +3,14 @@ public:
     bool containsDuplicate(vector<int>& nums) {
         
         ///Sajib Talukder
-        
-        return nums.size() > set<int>(nums.begin(),nums.end()).size();
+        unordered_map<int,bool>mp;
+        int sz = nums.size();
+        for(int i=0;i<sz;i++){
+            if(mp[nums[i]]==true)
+                return true;
+            mp[nums[i]]=true;
+        }
+        return false;
         
     }
 };
