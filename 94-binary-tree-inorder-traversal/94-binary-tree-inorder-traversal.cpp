@@ -15,17 +15,9 @@ public:
     vector<int> inorderTraversal(TreeNode* root) {
         if(root==NULL)
             return vec;
-        if(root->left!=NULL){
-            //vec.push_back(root->left->val);
-            inorderTraversal(root->left);
-        }
-        // else{
-        //     inorderTraversal(root->left);
-        // }
+        inorderTraversal(root->left);
         vec.push_back(root->val);
-        if(root->right!=NULL){
-            inorderTraversal(root->right);
-        }
+        inorderTraversal(root->right);
         return vec;
     }
 };
