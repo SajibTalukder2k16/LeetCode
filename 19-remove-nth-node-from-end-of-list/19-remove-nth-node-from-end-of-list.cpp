@@ -11,53 +11,28 @@
 class Solution {
 public:
     ListNode* removeNthFromEnd(ListNode* head, int n) {
-        ListNode *temp=head;
-        vector<ListNode*>vec;
-        while(temp!=NULL)
+        int cnt = 0;
+        ListNode* tNode = head;
+        while(tNode!=NULL)
         {
-            vec.push_back(temp);
-            temp=temp->next;
+            tNode=tNode->next;
+            cnt++;
         }
-        int sz=vec.size();
-        if(sz==1)
-        {
-            delete head;
-            return NULL;
-        }
-        if(sz==2)
-        {
-            if(n==1)
-            {
-                temp=head->next;
-                head->next=NULL;
-                delete temp;
-                return head;
-            }
-            else{
-                temp=head->next;
-                delete head;
-                head=temp;
-                return head;
-            }
-        }
-        if(n==1)
-        {
-            temp=vec[sz-2];
-            temp->next=NULL;
-            delete vec[sz-1];
+        int target = cnt-n; // though target node is cnt-n+1 but I will make link from cnt-n to cnt-n+2
+        tNode=head;
+        cnt=1;
+        if(target==0){
+            if(head->next!=NULL)
+                head=head->next;
+            else
+                head=NULL;
             return head;
         }
-        if(n==sz)
-        {
-            temp=head;
-            head=head->next;
-            delete temp;
-            return head;
+        while(cnt!=target){
+            tNode=tNode->next;
+            cnt++;
         }
-            
-        temp=vec[sz-n-1];
-        temp->next=vec[sz-n+1];
-        // cout<<vec.size()<<endl;
+        tNode->next=tNode->next->next;
         return head;
         
     }
