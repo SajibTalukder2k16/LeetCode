@@ -20,6 +20,8 @@ public:
     }
     
     int get(int index) {
+        if(index>counter)
+            return -1;
         temp = head->next;
         int cnt = 0;
         while(cnt!=index && temp!=NULL){
@@ -36,6 +38,7 @@ public:
         add->next = head->next;
         add->val = val;
         head->next=add;
+        counter++;
     }
     
     void addAtTail(int val) {
@@ -47,9 +50,12 @@ public:
         add->val = val;
         add->next = NULL;
         temp->next=add;
+        counter++;
     }
     
     void addAtIndex(int index, int val) {
+        if(index>counter)
+            return;
         temp = head->next;
         ListNode* prev = head;
         int cnt = 0;
@@ -59,17 +65,20 @@ public:
             cnt++;
         }
         if(cnt==index){
-             ListNode* add = new ListNode();
-        add->val = val;
-        add->next = prev->next;
-        prev->next = add;
+            ListNode* add = new ListNode();
+            add->val = val;
+            add->next = prev->next;
+            prev->next = add;
+            counter++;
         }
        
     }
     
     void deleteAtIndex(int index) {
-        if(index==0)
+        if(index==0){
             head=head->next;
+            counter--;
+        } 
         else{
             temp = head->next;
             ListNode* prev = head;
@@ -81,8 +90,11 @@ public:
                 cnt++;
             }
             //cout<<prev->val<<" "<<temp->val<<endl;
-            if(temp!=NULL)
-            prev->next = temp->next;
+            if(temp!=NULL){
+                prev->next = temp->next;
+                counter--;
+            }
+            
         }
         
     }
