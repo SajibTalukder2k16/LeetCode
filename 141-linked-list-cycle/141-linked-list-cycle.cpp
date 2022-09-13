@@ -9,14 +9,16 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        if(head==NULL)
-            return false;
-        while(head->next!=NULL)
-        {
-            if(head->val==1000000)
+        ListNode* fastPointer = head;
+        ListNode* slowPointer = head;
+        while(fastPointer!=NULL){
+            if(fastPointer->next!=NULL && fastPointer->next->next!=NULL)
+                fastPointer=fastPointer->next->next;
+            else
+                fastPointer=NULL;
+            slowPointer=slowPointer->next;
+            if(fastPointer==slowPointer && fastPointer!=NULL)
                 return true;
-            head->val=1000000;
-            head=head->next;
         }
         return false;
         
