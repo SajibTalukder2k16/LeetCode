@@ -14,6 +14,7 @@ public:
         ListNode *linkedList = new ListNode();
         linkedList->next = NULL;
         head = linkedList;
+        tail = linkedList;
         // cout<<"Created"<<head->val<<endl;
         // head->next = NULL;
         // linkedList->next = NULL;
@@ -39,18 +40,21 @@ public:
         add->val = val;
         head->next=add;
         counter++;
+        if(counter==1)
+            tail=add;
     }
     
     void addAtTail(int val) {
-        temp = head;
-        while(temp->next!=NULL){
-            temp=temp->next;
-        }
+        // temp = head;
+        // while(temp->next!=NULL){
+        //     temp=temp->next;
+        // }
         ListNode* add = new ListNode();
         add->val = val;
         add->next = NULL;
-        temp->next=add;
+        tail->next=add;
         counter++;
+        tail=add;
     }
     
     void addAtIndex(int index, int val) {
@@ -68,6 +72,8 @@ public:
             ListNode* add = new ListNode();
             add->val = val;
             add->next = prev->next;
+            if(prev->next==NULL)
+                tail=add;
             prev->next = add;
             counter++;
         }
@@ -75,8 +81,12 @@ public:
     }
     
     void deleteAtIndex(int index) {
+        if(index>counter)
+            return;
         if(index==0){
             head=head->next;
+            if(counter==1)
+                tail=head->next;
             counter--;
         } 
         else{
@@ -92,6 +102,8 @@ public:
             //cout<<prev->val<<" "<<temp->val<<endl;
             if(temp!=NULL){
                 prev->next = temp->next;
+                if(temp->next==NULL)
+                    tail=prev;
                 counter--;
             }
             
