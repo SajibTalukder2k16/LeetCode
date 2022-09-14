@@ -1,15 +1,17 @@
 class Solution {
 public:
     int findDuplicate(vector<int>& nums) {
-        int sz=nums.size();
-        bool map[100001]={false};
-        int i;
-        for(i=0;i<sz;i++){
-            if(map[nums[i]]==true)
-                break;
-            map[nums[i]]=true;
+        int sz = nums.size();
+        int i=nums[0];
+        int prev=0;
+        nums[prev]=-1;
+        while(nums[i]!=-1 || i<sz){
+            prev=i;
+            i=nums[i];
+            nums[prev]=-1;
+            if(nums[i]==-1)
+                return i;
         }
-        return nums[i];
-        
+        return -1;
     }
 };
