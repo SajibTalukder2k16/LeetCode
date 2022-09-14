@@ -16,12 +16,10 @@ public:
         sentinel->next = head;
         head=sentinel;
         while(sentinel!=NULL){
-            if(sentinel->next!=NULL)
-                if(sentinel->next->val==val){
-                    sentinel->next = sentinel->next->next;
-                    continue;
-                }
-            sentinel=sentinel->next;
+            if(sentinel->next && sentinel->next->val==val)
+                sentinel->next=sentinel->next->next;
+            else
+                sentinel=sentinel->next;
         }
         return head->next;
     }
