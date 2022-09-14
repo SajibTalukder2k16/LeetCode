@@ -14,13 +14,25 @@ public:
         
         ListNode* sentinel  = new ListNode();
         sentinel->next = head;
-        head=sentinel;
-        while(sentinel!=NULL){
-            if(sentinel->next && sentinel->next->val==val)
-                sentinel->next=sentinel->next->next;
-            else
-                sentinel=sentinel->next;
+        ListNode* prev = sentinel;
+        ListNode* cur = head;
+        ListNode* toDelete = NULL;
+        while(cur!=NULL){
+            if(cur->val==val){
+                prev->next = cur->next;
+                toDelete = cur;
+            }else{
+                prev=cur;
+            }
+            cur = cur->next;
+            if(toDelete!=NULL)
+            {
+                delete toDelete;
+                toDelete = NULL;
+            }
         }
-        return head->next;
+        head = sentinel->next;
+        delete sentinel;
+        return head;
     }
 };
