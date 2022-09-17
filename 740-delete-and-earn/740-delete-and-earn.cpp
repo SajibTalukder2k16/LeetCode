@@ -9,10 +9,12 @@ public:
             return 0;
         if(dp[i]!=-1)
             return dp[i];
-        if(mp[uniques[i]+1]!=0)
-            dp[i]=max(uniques[i]*mp[uniques[i]]+foo(i+2),foo(i+1));
+        int val = uniques[i];
+        int earn = val*mp[val];
+        if(mp[val+1]!=0)
+            dp[i]=max(earn + foo(i+2),foo(i+1));
         else
-            dp[i]=max(uniques[i]*mp[uniques[i]]+foo(i+1),foo(i+1));
+            dp[i]=max(earn+foo(i+1),foo(i+1));
         return dp[i];
     }
     int deleteAndEarn(vector<int>& nums) {
