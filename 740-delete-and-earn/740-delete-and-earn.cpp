@@ -5,8 +5,6 @@ public:
     map<int,int>mp;
     vector<int>uniques;
     int foo(int i){
-        // cout<<i<<endl;
-        // cout<<dp[i]<<" "<<sz<<endl;
         if(i>=sz)
             return 0;
         if(dp[i]!=-1)
@@ -21,7 +19,6 @@ public:
         sort(nums.begin(),nums.end());
         sz = nums.size();
         for(int i=0;i<sz;i++){
-            // cout<<mp[nums[i]]<<nums[i]<<endl;
             if(mp[nums[i]]==0)
                 uniques.push_back(nums[i]);
             mp[nums[i]]++; 
