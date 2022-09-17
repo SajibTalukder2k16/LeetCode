@@ -11,7 +11,9 @@ public:
             return dp[i];
         int val = uniques[i];
         int earn = val*mp[val];
-        if(mp[val+1]!=0)
+        if(i+1==sz)
+            return earn;
+        if(uniques[i+1]==val+1)
             dp[i]=max(earn + foo(i+2),foo(i+1));
         else
             dp[i]=max(earn+foo(i+1),foo(i+1));
