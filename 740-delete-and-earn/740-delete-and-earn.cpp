@@ -1,44 +1,36 @@
-
-#define mx 10001
 class Solution {
 public:
-    int sz;
-    int dp[mx];
-    vector<int>uniqueNums;
-    map<int,int>mapCount;
-    int foo(int pos){
-        if(pos>=sz)
+    int dp[10001]={0};
+    int sz = 0;
+    map<int,int>mp;
+    int foo(vector<int>& uniques, int i){
+        // cout<<i<<endl;
+        // cout<<dp[i]<<" "<<sz<<endl;
+        if(i>=sz)
             return 0;
-        if(dp[pos]!=-1)
-            return dp[pos];
-        int val=uniqueNums[pos];
-        int nextPos=pos+1;
-        int res1=val*mapCount[val];
-        if(nextPos==sz)
-            return res1;
-        if(uniqueNums[nextPos]==val+1)
-            nextPos++;
-        res1+=foo(nextPos);
-        int res2=foo(pos+1);
-        dp[pos]=max(res1,res2);
-        return dp[pos];
-        
+        if(dp[i]!=-1)
+            return dp[i];
+        if(mp[uniques[i]+1]!=0)
+            dp[i]=max(uniques[i]*mp[uniques[i]]+foo(uniques,i+2),foo(uniques,i+1));
+        else
+            dp[i]=max(uniques[i]*mp[uniques[i]]+foo(uniques,i+1),foo(uniques,i+1));
+        return dp[i];
     }
     int deleteAndEarn(vector<int>& nums) {
         sort(nums.begin(),nums.end());
-        memset(dp,-1,sizeof dp);
-        sz=nums.size();
+        vector<int>uniques;
+        sz = nums.size();
         int cnt=0;
         for(int i=0;i<sz;i++){
-            if(mapCount[nums[i]]==0){
-                uniqueNums.push_back(nums[i]);
+            // cout<<mp[nums[i]]<<nums[i]<<endl;
+            if(mp[nums[i]]==0){
+                uniques.push_back(nums[i]);
                 cnt++;
-            }   
-            mapCount[nums[i]]++;
+            }  
+            mp[nums[i]]++; 
         }
-        sz=cnt;
-        int res=foo(0);
-
-        return res;
+        sz = cnt;
+        memset(dp,-1,sizeof(dp));
+        return foo(uniques,0);
     }
 };
