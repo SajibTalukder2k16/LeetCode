@@ -1,5 +1,5 @@
-#define minusInf -300000000
-#define mx 20001
+
+#define mx 10001
 class Solution {
 public:
     int sz;
