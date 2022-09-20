@@ -11,72 +11,65 @@
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        int last_value=0;
-        ListNode* h1=l1;
-        ListNode* h2=l2;
-        while(l1!=NULL && l2!=NULL)
-        {
-           // cout<<l1->val<<" "<<l2->val<<endl;
-            int result=l1->val+l2->val+last_value;
-            last_value=result/10;
-            result%=10;
-            l1->val=result;
-            l2->val=result;
-            if(l1->next==NULL && l2->next==NULL && last_value!=0)
-            {
-                ListNode* temp= new ListNode();
-                temp->next=NULL;
-                temp->val=last_value;
-                l1->next=temp;
-                return h1;
-            }
+        if(l1==NULL && l2==NULL)
+            return NULL;
+        if(l2==NULL)
+            return l1;
+        if(l1==NULL)
+            return l2;
+        ListNode* ret = l1;
+        int remainder = 0;
+        ListNode* prevl1 = l1,*prevl2=l2;
+        while(l1!=NULL && l2!=NULL){
+            prevl1 = l1;
+            prevl2 = l2;
+            l1->val +=l2->val+remainder;
+            remainder=l1->val/10;
+            l1->val=l1->val-remainder*10;
             l1=l1->next;
             l2=l2->next;
         }
-        if(l1!=NULL)
+        if(l1==NULL && l2==NULL && remainder==0)
+            return ret;
+        else if(l1==NULL && l2==NULL && remainder!=0)
         {
-            while(l1!=NULL)
-            {
-                int result=l1->val+last_value;
-                last_value=result/10;
-                result%=10;
-                l1->val=result;
-                if(l1->next==NULL && last_value!=0)
-                {
-                    ListNode* temp= new ListNode();
-                    temp->next=NULL;
-                    temp->val=last_value;
-                    l1->next=temp;
-                    return h1;
-                }
+            ListNode* last = new ListNode();
+            last->val=remainder;
+            last->next = NULL;
+            prevl1->next=last;
+            return ret;
+        }
+        else if((l1==NULL || l2==NULL) && remainder ==0){
+            if(l1==NULL)
+                prevl1->next = l2;
+        }
+        else if(l2==NULL && remainder!=0){
+            while(remainder!=0 && l1!=NULL){
+                prevl1=l1;
+                l1->val +=remainder;
+                remainder=l1->val/10;
+                l1->val=l1->val-remainder*10;
                 l1=l1->next;
             }
-            return h1;
         }
-        
-        if(l2!=NULL)
-        {
-            while(l2!=NULL)
-            {
-                int result=l2->val+last_value;
-                last_value=result/10;
-                result%=10;
-                l2->val=result;
-                // cout<<l2->val<<endl;
-                if(l2->next==NULL && last_value!=0)
-                {
-                    ListNode* temp= new ListNode();
-                    temp->next=NULL;
-                    temp->val=last_value;
-                    l2->next=temp;
-                    return h2;
-                }
-                l2=l2->next;
+        else if(l1==NULL && l2!=NULL && remainder!=0){
+            l1=l2;
+            prevl1->next=l1;
+            prevl1=prevl1->next;
+            while(remainder!=0 && l1!=NULL){
+                prevl1=l1;
+                l1->val +=remainder;
+                remainder=l1->val/10;
+                l1->val=l1->val-remainder*10;
+                l1=l1->next;
             }
-            return h2;
         }
-        
-    return h1;
-        
+        if(remainder){
+            ListNode* last = new ListNode();
+            last->val=remainder;
+            last->next = NULL;
+            prevl1->next=last;
+        }
+        return ret;
     }
 };
