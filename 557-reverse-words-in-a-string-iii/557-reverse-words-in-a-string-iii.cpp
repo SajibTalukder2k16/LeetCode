@@ -1,25 +1,22 @@
 class Solution {
 public:
-    void reverseString(string& s,int i,int j) {
-        char ch;
-        while(i<=j){
-            ch=s[i];
-            s[i]=s[j];
-            s[j]=ch;
-            i++,j--;
+    string reverse(string s){
+        int len = s.length();
+        int half = len/2;
+        for(int i=0,j=len-1;i<half;i++,j--){
+            swap(s[i],s[j]);
         }
-        
+        return s;
     }
     string reverseWords(string s) {
-        int sz=s.length();
-        int idx=0;
-        for(int i=0;i<sz;i++){
-            if(s[i]==' '){
-                reverseString(s,idx,i-1);
-                idx=i+1;
-            }
+        string out = "";
+        stringstream ss(s);
+        string str;
+        while(ss>>str){
+            if(out!="")
+                out+=" ";
+            out+=reverse(str);
         }
-        reverseString(s,idx,sz-1);
-        return s;
+        return out;
     }
 };
