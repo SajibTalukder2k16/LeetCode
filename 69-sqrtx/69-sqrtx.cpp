@@ -2,7 +2,7 @@ class Solution {
 public:
     int mySqrt(int x) {
         long low = 0;
-        long high = 50000;
+        long high = (x/2)+1;
         long mid;
         while(high>=low){
             mid = (high+low)/2;
