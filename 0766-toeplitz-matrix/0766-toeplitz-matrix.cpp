@@ -18,9 +18,13 @@ public:
         bool result = true;
         for(int i=0;i<row;i++){
             result&=checker(matrix,i,0);
+            if(!result)
+                return result;
         }
         for(int i=0;i<col;i++){
             result&=checker(matrix,0,i);
+            if(!result)
+                return result;
         }
         return result;
     }
