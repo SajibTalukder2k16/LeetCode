@@ -15,17 +15,14 @@ public:
     bool isToeplitzMatrix(vector<vector<int>>& matrix) {
         row = matrix.size();
         col = matrix[0].size();
-        bool result = true;
         for(int i=0;i<row;i++){
-            result&=checker(matrix,i,0);
-            if(!result)
-                return result;
+            if(!checker(matrix,i,0))
+                return false;
         }
         for(int i=0;i<col;i++){
-            result&=checker(matrix,0,i);
-            if(!result)
-                return result;
+            if(!checker(matrix,0,i))
+                return false;
         }
-        return result;
+        return true;;
     }
 };
